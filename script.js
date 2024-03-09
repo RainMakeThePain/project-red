@@ -31,13 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const city = locationData.city;
                 const county = locationData.region
                 const country = locationData.country_name;
-    
-                // Check if the county information is available
-                if (county) {
-                    ipDisplay.textContent = `<u>Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s State Police Department</u>`;
-                } else {
-                    ipDisplay.textContent = `<u>Your IP: ${ip} is under the jurisdiction of ${city}'s police</u>`;
-                }
+                ipDisplay.textContent = `<u>Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s Police Department</u>`;
             } else {
                 ipDisplay.textContent = `<u>Your IP Address: ${ip} lol</u>`;
             }
