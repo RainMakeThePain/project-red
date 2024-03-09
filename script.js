@@ -4,6 +4,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const countdownDisplay = document.getElementById('countdown');
     const timerDisplay = document.getElementById('timer');
 
+    function getIPAddress() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.ipify.org?format=json', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const ipData = JSON.parse(xhr.responseText);
+                const ip = ipData.ip;
+                getLocationFromIP(ip);
+            } else {
+                ipDisplay.textContent = 'Unable to retrieve IP address';
+            }
+        };
+        xhr.onerror = function() {
+            ipDisplay.textContent = 'An error occurred while retrieving IP address';
+        };
+        xhr.send();
+    }
+
     function getLocationFromIP(ip) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
@@ -16,30 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 // Check if the county information is available
                 if (county) {
-                    ipDisplay.textContent = `Your IP: ${ip} in ${city}\nYou under the legal jurisdiction of ${county} Police Department`;
+                    ipDisplay.textContent = `Your IP: ${ip} which is in ${city}\nYou are in ${county}, ${country}`;
                 } else {
                     ipDisplay.textContent = `Your IP: ${ip} which is in ${city}, ${country}`;
                 }
-            } else {
-                ipDisplay.textContent = `Your IP Address: ${ip}`;
-            }
-        };
-        xhr.onerror = function() {
-            ipDisplay.textContent = `Your IP Address: ${ip}`;
-        };
-        xhr.send();
-    }
-
-    function getLocationFromIP(ip) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                const locationData = JSON.parse(xhr.responseText);
-                const city = locationData.city;
-                const region = locationData.region;
-                const country = locationData.country_name;
-                ipDisplay.textContent = `Your IP Address: ${ip} (${city}, ${region}, ${country})`;
             } else {
                 ipDisplay.textContent = `Your IP Address: ${ip} (Unable to retrieve location)`;
             }
