@@ -1,3 +1,4 @@
+<script>
 // It's good practice to ensure the DOM is fully loaded before running scripts that manipulate it
 document.addEventListener('DOMContentLoaded', function() {
     const ipDisplay = document.getElementById('ip-display');
@@ -13,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const ip = ipData.ip;
                 getLocationFromIP(ip);
             } else {
-                ipDisplay.textContent = 'Read the following carefully';
+                ipDisplay.textContent = '<u>Read the following carefully</u>';
             }
         };
         xhr.onerror = function() {
-            ipDisplay.textContent = 'Read the following carefully';
+            ipDisplay.textContent = '<u>Read the following carefully</u>';
         };
         xhr.send();
     }
@@ -34,16 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 // Check if the county information is available
                 if (county) {
-                    ipDisplay.textContent = `Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s State Police Department`;
+                    ipDisplay.textContent = `<u>Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s State Police Department</u>`;
                 } else {
-                    ipDisplay.textContent = `Your IP: ${ip} is under the jurisdiction of ${city}'s police`;
+                    ipDisplay.textContent = `<u>Your IP: ${ip} is under the jurisdiction of ${city}'s police</u>`;
                 }
             } else {
-                ipDisplay.textContent = `Your IP Address: ${ip} lol`;
+                ipDisplay.textContent = `<u>Your IP Address: ${ip} lol</u>`;
             }
         };
         xhr.onerror = function() {
-            ipDisplay.textContent = `Your IP Address: ${ip} lol`;
+            ipDisplay.textContent = `<u>Your IP Address: ${ip} lol</u>`;
         };
         xhr.send();
     }
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const remainingTime = countdownDuration - timeDifference;
 
         if (remainingTime <= 0) {
-            timerDisplay.textContent = "Time's up!";
+            timerDisplay.textContent = "<u>Time's up!</u>";
             clearInterval(timerInterval);
         } else {
             const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
             const milliseconds = Math.floor(remainingTime % 1000);
-            timerDisplay.textContent = `Time remaining: ${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds}ms`;
+            timerDisplay.textContent = `<u>Time remaining: ${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds}ms</u>`;
         }
     }
 
@@ -103,3 +104,4 @@ document.addEventListener('DOMContentLoaded', function() {
         return null;
     }
 });
+</script>
