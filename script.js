@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getLocationFromIP(ip) {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
+        xhr.open('GET', `https://ip-api.com/json/${ip}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 const locationData = JSON.parse(xhr.responseText);
                 const city = locationData.city;
-                const county = locationData.district || locationData.region; // Use district or region as county
-                const country = locationData.country_name;
+                const county = locationData.county;
+                const country = locationData.country;
     
                 // Check if the county information is available
                 if (county) {
