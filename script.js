@@ -29,12 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (xhr.status === 200) {
                 const locationData = JSON.parse(xhr.responseText);
                 const city = locationData.city;
-                const county = locationData.region
                 const country = locationData.country_name;
     
                 // Check if the county information is available
                 if (county) {
-                    ipDisplay.textContent = `Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s Police Department  `;
+                    ipDisplay.textContent = `Your IP: ${ip} under the jurisdiction of ${city}'s cops`;
                 } else {
                     ipDisplay.textContent = `Your IP: ${ip} is under the jurisdiction of ${city}'s cops`;
                 }
