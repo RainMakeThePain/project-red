@@ -24,26 +24,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getLocationFromIP(ip) {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
+        xhr.open('GET', `https://ip-api.com/json/${ip}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 const locationData = JSON.parse(xhr.responseText);
                 const city = locationData.city;
-                const county = locationData.region
-                const country = locationData.country_name;
+                const county = locationData.county;
+                const country = locationData.country;
     
                 // Check if the county information is available
                 if (county) {
-                    ipDisplay.textContent = `Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s Police Department`;
+                    ipDisplay.textContent = `Your IP: ${ip}, ${city}\n is in ${county} Police Department's jurisdiction`;
                 } else {
-                    ipDisplay.textContent = `Your IP: ${ip} is under the jurisdiction of ${city}'s police`;
+                    ipDisplay.textContent = `Your IP: ${ip}, under ${city} police jurisdiction`;
                 }
             } else {
-                ipDisplay.textContent = `Your IP Address: ${ip} lol`;
+                ipDisplay.textContent = `Your IP Address: ${ip}`;
             }
         };
         xhr.onerror = function() {
-            ipDisplay.textContent = `Your IP Address: ${ip} lol`;
+            ipDisplay.textContent = `Your IP Address: ${ip}`;
         };
         xhr.send();
     }
