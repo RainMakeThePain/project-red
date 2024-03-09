@@ -4,23 +4,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const countdownDisplay = document.getElementById('countdown');
     const timerDisplay = document.getElementById('timer');
 
-    function getIPAddress() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://api.ipify.org?format=json', true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                const ipData = JSON.parse(xhr.responseText);
-                const ip = ipData.ip;
-                getLocationFromIP(ip);
+function getLocationFromIP(ip) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const locationData = JSON.parse(xhr.responseText);
+            const city = locationData.city;
+            const county = locationData.district || locationData.region; // Use district or region as county
+            const country = locationData.country_name;
+
+            // Check if the county information is available
+            if (county) {
+                ipDisplay.textContent = `Your IP: ${ip} in ${city}\nYou under the legal jurisdiction of ${county} Police Department`;
             } else {
-                ipDisplay.textContent = 'Unable to retrieve IP address';
+                ipDisplay.textContent = `Your IP: ${ip} which is in ${city}, ${country}`;
             }
-        };
-        xhr.onerror = function() {
-            ipDisplay.textContent = 'An error occurred while retrieving IP address';
-        };
-        xhr.send();
-    }
+        } else {
+            ipDisplay.textContent = `Your IP Address: ${ip}`;
+        }
+    };
+    xhr.onerror = function() {
+        ipDisplay.textContent = `Your IP Address: ${ip}`;
+    };
+    xhr.send();
+}
 
     function getLocationFromIP(ip) {
         const xhr = new XMLHttpRequest();
