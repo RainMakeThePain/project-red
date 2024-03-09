@@ -4,31 +4,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const countdownDisplay = document.getElementById('countdown');
     const timerDisplay = document.getElementById('timer');
 
-function getLocationFromIP(ip) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const locationData = JSON.parse(xhr.responseText);
-            const city = locationData.city;
-            const county = locationData.district || locationData.region; // Use district or region as county
-            const country = locationData.country_name;
-
-            // Check if the county information is available
-            if (county) {
-                ipDisplay.textContent = `Your IP: ${ip} in ${city}\nYou under the legal jurisdiction of ${county} Police Department`;
+    function getLocationFromIP(ip) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `https://ipapi.co/${ip}/json/`, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const locationData = JSON.parse(xhr.responseText);
+                const city = locationData.city;
+                const county = locationData.district || locationData.region; // Use district or region as county
+                const country = locationData.country_name;
+    
+                // Check if the county information is available
+                if (county) {
+                    ipDisplay.textContent = `Your IP: ${ip} in ${city}\nYou under the legal jurisdiction of ${county} Police Department`;
+                } else {
+                    ipDisplay.textContent = `Your IP: ${ip} which is in ${city}, ${country}`;
+                }
             } else {
-                ipDisplay.textContent = `Your IP: ${ip} which is in ${city}, ${country}`;
+                ipDisplay.textContent = `Your IP Address: ${ip}`;
             }
-        } else {
+        };
+        xhr.onerror = function() {
             ipDisplay.textContent = `Your IP Address: ${ip}`;
-        }
-    };
-    xhr.onerror = function() {
-        ipDisplay.textContent = `Your IP Address: ${ip}`;
-    };
-    xhr.send();
-}
+        };
+        xhr.send();
+    }
 
     function getLocationFromIP(ip) {
         const xhr = new XMLHttpRequest();
