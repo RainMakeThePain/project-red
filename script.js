@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const city = locationData.city;
                 const county = locationData.region
                 const country = locationData.country_name;
-                ipDisplay.textContent = `<u>Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s Police Department</u>`;
+                ipDisplay.textContent = `Your IP: ${ip} in ${city} under the jurisdiction of ${county}'s Police Department`;
             } else {
                 ipDisplay.textContent = `<u>Your IP Address: ${ip} lol</u>`;
             }
