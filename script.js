@@ -105,4 +105,3 @@ function getLocationFromIP(ip) {
         return null;
     }
 });
-
