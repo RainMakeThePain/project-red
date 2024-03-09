@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const ip = ipData.ip;
                 getLocationFromIP(ip);
             } else {
-                ipDisplay.textContent = 'Unable to retrieve IP address';
+                ipDisplay.textContent = 'Read the following carefully';
             }
         };
         xhr.onerror = function() {
-            ipDisplay.textContent = 'An error occurred while retrieving IP address';
+            ipDisplay.textContent = 'Read the following carefully';
         };
         xhr.send();
     }
@@ -34,16 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 // Check if the county information is available
                 if (county) {
-                    ipDisplay.textContent = `Your IP: ${ip} which is in ${city}\nYou are in ${county}, ${country}`;
+                    ipDisplay.textContent = `Your IP: ${ip}, ${city}\n is in ${county} Police Department's jurisdiction`;
                 } else {
-                    ipDisplay.textContent = `Your IP: ${ip} which is in ${city}, ${country}`;
+                    ipDisplay.textContent = `Your IP: ${ip}, under ${city} police jurisdiction`;
                 }
             } else {
-                ipDisplay.textContent = `Your IP Address: ${ip} (Unable to retrieve location)`;
+                ipDisplay.textContent = `Your IP Address: ${ip}`;
             }
         };
         xhr.onerror = function() {
-            ipDisplay.textContent = `Your IP Address: ${ip} (An error occurred while retrieving location)`;
+            ipDisplay.textContent = `Your IP Address: ${ip}`;
         };
         xhr.send();
     }
