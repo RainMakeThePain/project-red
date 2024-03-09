@@ -1,0 +1,35 @@
+/* styles.css */
+body {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+code {
+    display: block;
+    white-space: pre-wrap;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+#countdown {
+    font-size: 2rem;
+    margin: 20px 0;
+}
