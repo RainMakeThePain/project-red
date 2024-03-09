@@ -1,4 +1,3 @@
-<script>
 // It's good practice to ensure the DOM is fully loaded before running scripts that manipulate it
 document.addEventListener('DOMContentLoaded', function() {
     const ipDisplay = document.getElementById('ip-display');
@@ -14,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const ip = ipData.ip;
                 getLocationFromIP(ip);
             } else {
-                ipDisplay.textContent = '<u>Read the following carefully</u>';
+                ipDisplay.textContent = 'Unable to retrieve IP address';
             }
         };
         xhr.onerror = function() {
-            ipDisplay.textContent = '<u>Read the following carefully</u>';
+            ipDisplay.textContent = 'An error occurred while retrieving IP address';
         };
         xhr.send();
     }
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const remainingTime = countdownDuration - timeDifference;
 
         if (remainingTime <= 0) {
-            timerDisplay.textContent = "<u>Time's up!</u>";
+            timerDisplay.textContent = "Time's up!";
             clearInterval(timerInterval);
         } else {
             const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
@@ -79,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
             const milliseconds = Math.floor(remainingTime % 1000);
-            timerDisplay.textContent = `<u>Time remaining: ${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds}ms</u>`;
+            timerDisplay.textContent = `Time remaining: ${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds}ms`;
         }
     }
 
@@ -104,4 +103,3 @@ document.addEventListener('DOMContentLoaded', function() {
         return null;
     }
 });
-</script>
